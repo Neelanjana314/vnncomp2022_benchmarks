@@ -1,4 +1,11 @@
-%% load vnncomp 2023 benchmark NNs
+%% load vnncomp 2022 benchmark NNs
+
+%% cifar2020
+net_cifar2020_1 = importONNXNetwork('./onnx/cifar10_2_255_simplified.onnx', 'OutputDataFormats',"BC"); %reshape
+nnvnet1 = matlab2nnv(net_cifar2020_1);
+%for pgd
+net_cifar2020_5 = importONNXNetwork('./onnx/convBigRELU__PGD.onnx','InputDataFormats',"BCSS", 'OutputDataFormats',"BC");
+nnvnet5 = matlab2nnv(net_cifar2020_5);
 
 %% cifar100_tinyimagenet_resnet
 net_cifar100_tiny1 = importONNXNetwork('./onnx/CIFAR100_resnet_large.onnx', 'OutputDataFormats',"BC");
@@ -14,7 +21,7 @@ nnvnet = matlab2nnv(net_fc);
 
 %% oval21
 net_oval1 = importONNXNetwork('./onnx/cifar_base_kw.onnx', 'OutputDataFormats',"BC"); %reshape
-nnvnet = matlab2nnv(net_cgan);
+nnvnet = matlab2nnv(net_oval1);
 
 %% reachprob: onnx to matlab
 net_reach1 = importONNXNetwork('./onnx/gcas.onnx', 'OutputDataFormats',"BC"); % no reshape
